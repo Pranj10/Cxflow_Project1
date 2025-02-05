@@ -1,0 +1,19 @@
+include: 'https://raw.githubusercontent.com/checkmarx-ltd/cx-flow/master/src/main/resources/samples/gitlab-config.yml'
+
+variables:
+  CX_FLOW_ENABLED_VULNERABILITY_SCANNERS: "sast"
+  CHECKMARX_USERNAME: "Pranj1008"
+  CHECKMARX_PASSWORD: "Jalipran#10"
+  CHECKMARX_BASE_URL: http://pranjalim-lt
+
+stages:
+  - scan
+
+cx-scan:
+  artifacts:
+    reports:
+      sast: gl-sast-report.json
+      dependency_scanning: gl-dependency-scanning-report.json
+    paths:
+      - gl-sast-report.json
+      - gl-dependency-scanning-report.json
