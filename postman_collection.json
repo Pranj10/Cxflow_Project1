@@ -1,0 +1,842 @@
+{
+	"info": {
+		"_postman_id": "89ec741f-0d52-41fe-94b4-61ae750d3311",
+		"name": "AltoroJ REST API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26736640"
+	},
+	"item": [
+		{
+			"name": "login",
+			"item": [
+				{
+					"name": "Check if any user is logged in",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"login"
+							]
+						},
+						"description": "If a user is loggedin the username will be returned"
+					},
+					"response": [
+						{
+							"name": "Logged in",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Logged out",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Login method",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"login"
+							]
+						},
+						"description": "After a successful login a token is returned. This is a Bearer token. To authenticate with it use the Authorization header and set value to Bearer empty space and the token value."
+					},
+					"response": [
+						{
+							"name": "Success message when login is complete",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Bad parameters: Please check provided values",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Internal server error: Please see error message or logs for details",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "account",
+			"item": [
+				{
+					"name": "{accountNo}",
+					"item": [
+						{
+							"name": "transactions",
+							"item": [
+								{
+									"name": "show Last Ten Transactions",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/account/:accountNo/transactions",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"account",
+												":accountNo",
+												"transactions"
+											],
+											"variable": [
+												{
+													"key": "accountNo",
+													"value": "<string>",
+													"description": "(Required) Account id"
+												}
+											]
+										},
+										"description": "Returns the last 10 transactions attached to an account"
+									},
+									"response": [
+										{
+											"name": "Successful operation",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/account/:accountNo/transactions",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"account",
+														":accountNo",
+														"transactions"
+													],
+													"variable": [
+														{
+															"key": "accountNo"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Unauthorized request",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/account/:accountNo/transactions",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"account",
+														":accountNo",
+														"transactions"
+													],
+													"variable": [
+														{
+															"key": "accountNo"
+														}
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Internal server error",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/account/:accountNo/transactions",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"account",
+														":accountNo",
+														"transactions"
+													],
+													"variable": [
+														{
+															"key": "accountNo"
+														}
+													]
+												}
+											},
+											"status": "Internal Server Error",
+											"code": 500,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "get Transactions",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/account/:accountNo/transactions",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"account",
+												":accountNo",
+												"transactions"
+											],
+											"variable": [
+												{
+													"key": "accountNo",
+													"value": "<string>",
+													"description": "(Required) Account id"
+												}
+											]
+										},
+										"description": "Return transactions between 2 specific dates"
+									},
+									"response": [
+										{
+											"name": "Successful operation",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/account/:accountNo/transactions",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"account",
+														":accountNo",
+														"transactions"
+													],
+													"variable": [
+														{
+															"key": "accountNo"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Bad parameters: Please check provided values",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/account/:accountNo/transactions",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"account",
+														":accountNo",
+														"transactions"
+													],
+													"variable": [
+														{
+															"key": "accountNo"
+														}
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Unauthorized request",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/account/:accountNo/transactions",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"account",
+														":accountNo",
+														"transactions"
+													],
+													"variable": [
+														{
+															"key": "accountNo"
+														}
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Internal server error",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/account/:accountNo/transactions",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"account",
+														":accountNo",
+														"transactions"
+													],
+													"variable": [
+														{
+															"key": "accountNo"
+														}
+													]
+												}
+											},
+											"status": "Not Implemented",
+											"code": 501,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "get Account Balance",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/account/:accountNo",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										":accountNo"
+									],
+									"variable": [
+										{
+											"key": "accountNo",
+											"value": "<string>",
+											"description": "(Required) Account id"
+										}
+									]
+								},
+								"description": "Returns details about a specific account"
+							},
+							"response": [
+								{
+									"name": "Successful operation",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/account/:accountNo",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"account",
+												":accountNo"
+											],
+											"variable": [
+												{
+													"key": "accountNo"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Unauthorized request",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/account/:accountNo",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"account",
+												":accountNo"
+											],
+											"variable": [
+												{
+													"key": "accountNo"
+												}
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Internal server error",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/account/:accountNo",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"account",
+												":accountNo"
+											],
+											"variable": [
+												{
+													"key": "accountNo"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "get Account",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/account",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"account"
+							]
+						},
+						"description": "Returns a list of all the accounts owned by the user"
+					},
+					"response": [
+						{
+							"name": "Successful operation",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/account",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Unauthorized request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/account",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Internal server error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/account",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "logout",
+			"item": [
+				{
+					"name": "do Log Out",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/logout",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"logout"
+							]
+						},
+						"description": "Logout from the bank"
+					},
+					"response": [
+						{
+							"name": "Successful operation",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/logout",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Unauthorized request ",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/logout",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"logout"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://testfire.net"
+		}
+	]
+}
