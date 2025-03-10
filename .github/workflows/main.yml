@@ -37,7 +37,7 @@ jobs:
           # Path to the ZAP configuration file (Update this path if needed)
           config: ./Config_q7_dast_api_ee38c1e1-1203-4298-bace-174ffc163f10.yaml
           # Path to the OpenAPI specification file (Update this path if needed)
-          openapi: ./openapi.json
+          openapi: ./openapi
           # The base URL for the Checkmarx One Servers (Update if needed)
           base_url: https://eu.ast.checkmarx.net/
           # The environment ID previously created in the Frontend
