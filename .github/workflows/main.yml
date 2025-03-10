@@ -1,9 +1,8 @@
 name: Checkmarx DAST Pipeline
  
 on: 
-  # No trigger here, this pipeline will not run automatically.
-  # You can add a manual trigger like the following if needed:
-   workflow_dispatch:
+  # Manual trigger for this workflow
+  workflow_dispatch:
  
 jobs:
   checkmarx-dast:
@@ -15,34 +14,43 @@ jobs:
     runs-on: ubuntu-latest
  
     steps:
+      # Step 1: Checkout Repository
       - name: Checkout Repository
         uses: actions/checkout@v3
  
+      # Step 2: Create Directory for Output
       - name: Create Directory for Output
         run: mkdir ${{ github.workspace }}/output_fold
  
+      # Step 3: Change Directory Owner (Ensure proper permissions for the files)
       - name: Change Directory Owner
         run: sudo chown -R 1000:1000 ${{ github.workspace }}
  
+      # Step 4: Checkmarx DAST Scan
       - name: Checkmarx DAST Scan
         uses: Checkmarx/dast-github-action@v2.3.0
         env:
           CX_APIKEY: ${{ secrets.APIKEY }}
         with:
           # The type of scan to perform (web, api)
-          command: web
-          # The path to the ZAP configuration file
+          command: api
+          # Path to the ZAP configuration file (Update this path if needed)
           config: ./Config_q7_dast_api_ee38c1e1-1203-4298-bace-174ffc163f10.yaml
-          # The base URL for the Checkmarx One Servers
+          # Path to the OpenAPI specification file (Update this path if needed)
+          openapi: openapi.json
+          # The base URL for the Checkmarx One Servers (Update if needed)
           base_url: https://eu.ast.checkmarx.net/
           # The environment ID previously created in the Frontend
           environment_id: ee38c1e1-1203-4298-bace-174ffc163f10
-          output: ${{ github.workspace }}/output_fold #./output
+          # Directory to store the scan results
+          output: ${{ github.workspace }}/output_fold
  
+      # Step 5: Reclaim Output Directory Ownership
       - name: Reclaim Output Directory
         if: always()
         run: sudo chown -R 1001:1001 ${{ github.workspace }}/output_fold
  
+      # Step 6: Upload DAST Logs as Artifacts
       - name: Upload DAST Logs
         uses: actions/upload-artifact@v4
         if: always()
