@@ -36,15 +36,18 @@ jobs:
           command: api
           # Path to the ZAP configuration file (Update this path if needed)
           config: ./Config_q7_dast_api_ee38c1e1-1203-4298-bace-174ffc163f10.yaml
-          # Path to the OpenAPI specification file (Update this path if needed)
-          postman: ./postman_collection.json
+          # Relevant only for API scans. Path to the OpenAPI specification file
+          openapi: ./openapi-spec.json  # Use this if you are scanning an API with OpenAPI spec
+          # Relevant only for API scans. Path to the Postman collection file (cannot be provided with openapi flag)
+          # postman: ./postman_collection.json  # Uncomment this and comment openapi if using Postman collection
           # The base URL for the Checkmarx One Servers (Update if needed)
           base_url: https://eu.ast.checkmarx.net/
           # The environment ID previously created in the Frontend
           environment_id: ee38c1e1-1203-4298-bace-174ffc163f10
           # Directory to store the scan results
           output: ${{ github.workspace }}/output_fold
-
+          # Timeout for ZAP engine in ms (optional)
+         
       # Step 5: Reclaim Output Directory Ownership
       - name: Reclaim Output Directory
         if: always()
