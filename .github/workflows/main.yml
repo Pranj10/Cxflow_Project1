@@ -47,7 +47,30 @@ jobs:
           # Directory to store the scan results
           output: ${{ github.workspace }}/output_fold
           # Timeout for ZAP engine in ms (optional)
-         
+          timeout: 15000
+          # Interval in which to update on the progress of the scan (optional)
+          update_interval: 20
+          # JVM properties for ZAP engine (optional)
+          jvm_properties: -Xmx4G
+          # Log level for the logs (optional)
+          log_level: debug
+          # Set to true to print logs to stdout (optional)
+          verbose: true
+          # The Severity in which the action should fail (optional)
+          fail_on: high
+          # Retry attempts on connection failure (optional)
+          retry: 5
+          # Retry delay in seconds (optional)
+          retry_delay: 30
+          # Proxy URL for ZAP engine (optional)
+          proxy_url: http://proxy.example.com
+          # Proxy port (optional)
+          proxy_port: 8080
+          # Poll timeout for uploading results (optional)
+          poll_timeout: 600
+          # Time interval between poll requests (optional)
+          poll_ticker: 60
+
       # Step 5: Reclaim Output Directory Ownership
       - name: Reclaim Output Directory
         if: always()
